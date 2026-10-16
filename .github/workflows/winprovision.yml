@@ -37,6 +37,10 @@ jobs:
             if ($LASTEXITCODE -ne 0) { throw 'Cache start failed.' }
             $cacheStatus = & $helper status --json | ConvertFrom-Json
             if (-not $cacheStatus.CacheAvailable) { throw 'Process-scoped cache unavailable.' }
+            $probe = '& "' + $helper + '" --direct "' + $env:SystemRoot + '/System32/cmd.exe" /d /c exit 37; exit $LASTEXITCODE'
+            $encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($probe))
+            & $helper --integrity Medium --direct "$env:SystemRoot/System32/WindowsPowerShell/v1.0/powershell.exe" -NoProfile -NonInteractive -EncodedCommand $encoded
+            if ($LASTEXITCODE -ne 37) { throw 'Medium integrity child could not reuse the scoped cache.' }
           } finally {
             & $helper cache off --pid $cachePid
             if ($LASTEXITCODE -ne 0) { throw 'Cache stop failed.' }
