@@ -18,7 +18,7 @@ jobs:
       - name: Build Native AOT
         shell: pwsh
         run: |
-          dotnet publish src/gsudo/gsudo.csproj -c Release -r win-x64 --self-contained true --locked-mode -o artifacts/win-x64
+          dotnet publish src/gsudo/gsudo.csproj -c Release -r win-x64 --self-contained true -p:RestoreLockedMode=true -o artifacts/win-x64
           if ($LASTEXITCODE -ne 0) { throw 'Build failed.' }
           Copy-Item LICENSE.txt artifacts/win-x64/LICENSE.txt
       - name: Verify helper and child exit status
