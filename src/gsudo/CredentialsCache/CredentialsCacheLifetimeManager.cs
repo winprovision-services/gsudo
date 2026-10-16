@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Security.AccessControl;
 using System.Security.Principal;
@@ -27,7 +27,7 @@ namespace gsudo.CredentialsCache
     // user NonAdmin and System, both desired actions.
     class CredentialsCacheLifetimeManager
     {
-        const string GLOBAL_WAIT_HANDLE_NAME = @"Global\gsudo.CredentialsCache";
+        const string GLOBAL_WAIT_HANDLE_NAME = @"Global\WinProvision.gsudo.CredentialsCache";
 
         public delegate void CacheEventHandler();
         public event CacheEventHandler OnCacheClear;

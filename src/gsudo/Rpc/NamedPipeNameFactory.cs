@@ -1,4 +1,4 @@
-﻿using gsudo.Helpers;
+using gsudo.Helpers;
 using System;
 using System.Globalization;
 using System.Security.Principal;
@@ -40,8 +40,8 @@ namespace gsudo.Rpc
 
         private static string GetPipePrefix(bool isAdmin)
         {
-            const string PROTECTED = "ProtectedPrefix\\Administrators\\gsudo";
-            const string REGULAR = "gsudo";
+            const string PROTECTED = "ProtectedPrefix\\Administrators\\WinProvision_gsudo";
+            const string REGULAR = "WinProvision_gsudo";
             if (isAdmin)
                 return PROTECTED;
             else

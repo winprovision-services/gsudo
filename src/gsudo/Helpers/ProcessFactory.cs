@@ -1,4 +1,4 @@
-﻿using gsudo.Native;
+using gsudo.Native;
 using gsudo.Tokens;
 using Microsoft.Win32.SafeHandles;
 using System;
@@ -321,7 +321,7 @@ namespace gsudo.Helpers
 
             var startupInfo = new STARTUPINFO()
             {
-                cb = (int)Marshal.SizeOf(typeof(STARTUPINFO)),
+                cb = (int)Marshal.SizeOf<STARTUPINFO>(),
                 dwFlags = STARTF_USESHOWWINDOW,
                 wShowWindow = (short)(hidden ? 0 : 1),
             };

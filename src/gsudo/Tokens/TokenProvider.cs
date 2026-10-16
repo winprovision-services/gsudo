@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using gsudo.Native;
 using static gsudo.Native.ProcessApi;
 using static gsudo.Native.TokensApi;
@@ -178,8 +178,7 @@ namespace gsudo.Tokens
                 }
 
                 // Marshal the TOKEN_MANDATORY_LABEL struct from native to .NET object.
-                TOKEN_LINKED_TOKEN linkedTokenStruct = (TOKEN_LINKED_TOKEN)
-                    Marshal.PtrToStructure(pLinkedToken, typeof(TOKEN_LINKED_TOKEN));
+                TOKEN_LINKED_TOKEN linkedTokenStruct = Marshal.PtrToStructure<TOKEN_LINKED_TOKEN>(pLinkedToken);
 
                 var sa = new SECURITY_ATTRIBUTES();
                 sa.nLength = 0;

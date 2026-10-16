@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace gsudo.Rpc
             var ptr = Native.FileApi.FindFirstFile($@"\\.\pipe\{name}", out lpFindFileData);
             do
             {
-                if (lpFindFileData.cFileName.ToUpperInvariant().Contains("GSUDO") && 
+                if (lpFindFileData.cFileName.ToUpperInvariant().Contains("WINPROVISION_GSUDO") && 
                     !lpFindFileData.cFileName.ToUpperInvariant().Contains("_CONTROL"))
                 {
                     namedPipes.Add(lpFindFileData.cFileName);

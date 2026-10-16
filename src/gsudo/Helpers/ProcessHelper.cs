@@ -1,4 +1,4 @@
-﻿using static gsudo.Native.ProcessApi;
+using static gsudo.Native.ProcessApi;
 using Microsoft.Win32.SafeHandles;
 using System;
 using System.ComponentModel;
@@ -305,8 +305,7 @@ namespace gsudo.Helpers
                 }
 
                 // Marshal the TOKEN_MANDATORY_LABEL struct from native to .NET object.
-                TokensApi.TOKEN_MANDATORY_LABEL tokenIL = (TokensApi.TOKEN_MANDATORY_LABEL)
-                    Marshal.PtrToStructure(pTokenIL, typeof(TokensApi.TOKEN_MANDATORY_LABEL));
+                TokensApi.TOKEN_MANDATORY_LABEL tokenIL = Marshal.PtrToStructure<TokensApi.TOKEN_MANDATORY_LABEL>(pTokenIL);
 
                 IntPtr pIL = TokensApi.GetSidSubAuthority(tokenIL.Label.Sid, 0);
                 IL = Marshal.ReadInt32(pIL);

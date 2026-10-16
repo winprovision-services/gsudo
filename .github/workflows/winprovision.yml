@@ -1,0 +1,38 @@
+name: WinProvision Elevator
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/winprovision-elevator]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2025
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1
+        with:
+          global-json-file: global.json
+      - name: Build Native AOT
+        shell: pwsh
+        run: |
+          dotnet publish src/gsudo/gsudo.csproj -c Release -r win-x64 --self-contained true --locked-mode -o artifacts/win-x64
+          if ($LASTEXITCODE -ne 0) { throw 'Build failed.' }
+          Copy-Item LICENSE.txt artifacts/win-x64/LICENSE.txt
+      - name: Verify helper and child exit status
+        shell: pwsh
+        run: |
+          $helper = (Resolve-Path artifacts/win-x64/WinProvision.Elevator.exe).Path
+          & $helper --version
+          if ($LASTEXITCODE -ne 0) { throw 'Version failed.' }
+          $status = & $helper status --json | ConvertFrom-Json
+          if ($status.CacheMode -ne 'Explicit') { throw 'Cache must remain opt-in.' }
+          & $helper --direct "$env:SystemRoot/System32/cmd.exe" /d /c exit 37
+          if ($LASTEXITCODE -ne 37) { throw 'Child exit status was not preserved.' }
+          Get-FileHash $helper -Algorithm SHA256
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: winprovision-elevator-win-x64
+          path: artifacts/win-x64/

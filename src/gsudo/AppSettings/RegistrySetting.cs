@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -20,7 +20,7 @@ namespace gsudo.AppSettings
 
     abstract class RegistrySetting
     {
-        protected const string REGKEY = "SOFTWARE\\gsudo";
+        protected const string REGKEY = "SOFTWARE\\WinProvision\\Gsudo";
         public RegistrySettingScope Scope { get; protected set; }
 
         public string Name { get; set; }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ namespace gsudo.Commands
         {
             var assembly = Assembly.GetExecutingAssembly();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"{assembly.GetName().Name} v{GitVersionInformation.FullSemVer} ({GitVersionInformation.FullBuildMetaData})");
+            Console.WriteLine($"{assembly.GetName().Name} v{assembly.GetName().Version} (WinProvision fork, upstream gsudo 2.6.1)");
 
             Console.ResetColor();
             if (verbose) Console.WriteLine("Copyright(c) 2019-2022 Gerardo Grignoli and GitHub contributors");
