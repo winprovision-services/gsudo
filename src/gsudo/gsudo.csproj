@@ -7,6 +7,7 @@
     <Authors>Gerardo Grignoli</Authors>
     <Description>WinProvision Elevator - auxiliar de elevação baseado em gsudo.</Description>
     <Title>WinProvision Elevator</Title>
+    <AssemblyTitle>WinProvision Elevator</AssemblyTitle>
     <Company>WinProvision Services</Company>
     <DelaySign>false</DelaySign>
     <OutputPath>bin\</OutputPath>
