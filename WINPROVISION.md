@@ -7,3 +7,5 @@ Changes: .NET 10 Native AOT; output WinProvision.Elevator.exe; version 2.6.1.1; 
 Build: dotnet publish src/gsudo/gsudo.csproj -c Release -r win-x64 --self-contained true -o artifacts/win-x64
 
 Cache access remains scoped to a consenting process and descendants by the host. This build is unsigned; do not confuse its SHA-256 inventory with Authenticode signing.
+
+Version 2.6.1.2 embeds the WinProvision Store icon and WinProvision Elevator display metadata. The icon is covered by icon/winprovision-LICENSE.txt; the upstream gsudo MIT license remains unchanged.

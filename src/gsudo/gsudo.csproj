@@ -5,13 +5,15 @@
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>StrongName.snk</AssemblyOriginatorKeyFile>
     <Authors>Gerardo Grignoli</Authors>
-    <Description>gsudo is a sudo for Windows, allows to run commands with elevated permissions in the current console.</Description>
+    <Description>WinProvision Elevator - auxiliar de elevação baseado em gsudo.</Description>
+    <Title>WinProvision Elevator</Title>
+    <Company>WinProvision Services</Company>
     <DelaySign>false</DelaySign>
     <OutputPath>bin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <Version>2.6.1.1</Version>
+    <Version>2.6.1.2</Version>
     <Product>WinProvision Elevator (based on gsudo)</Product>
     <Copyright>2021 Gerardo Grignoli</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -22,10 +24,10 @@
     <AssemblyName>WinProvision.Elevator</AssemblyName>
     <Deterministic>true</Deterministic>
     <PathMap>$(MSBuildProjectDirectory)=C:\</PathMap>
-    <AssemblyVersion>2.6.1.1</AssemblyVersion>
-    <FileVersion>2.6.1.1</FileVersion>
+    <AssemblyVersion>2.6.1.2</AssemblyVersion>
+    <FileVersion>2.6.1.2</FileVersion>
 	<NoWarn>1701;1702;CA1303;CA1707;CA1028;CA1001;CA1031;CA1416</NoWarn>
-	<ApplicationIcon>icon\gsudo.ico</ApplicationIcon>
+	<ApplicationIcon>icon\winprovision.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net10.0'">
     <PublishAot>true</PublishAot>
