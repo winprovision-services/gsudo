@@ -31,7 +31,18 @@ jobs:
           if ($status.CacheMode -ne 'Explicit') { throw 'Cache must remain opt-in.' }
           & $helper --direct "$env:SystemRoot/System32/cmd.exe" /d /c exit 37
           if ($LASTEXITCODE -ne 37) { throw 'Child exit status was not preserved.' }
+          $cachePid = $PID
+          try {
+            & $helper cache on --pid $cachePid --duration 00:02:00
+            if ($LASTEXITCODE -ne 0) { throw 'Cache start failed.' }
+            $cacheStatus = & $helper status --json | ConvertFrom-Json
+            if (-not $cacheStatus.CacheAvailable) { throw 'Process-scoped cache unavailable.' }
+          } finally {
+            & $helper cache off --pid $cachePid
+            if ($LASTEXITCODE -ne 0) { throw 'Cache stop failed.' }
+          }
           Get-FileHash $helper -Algorithm SHA256
+          exit 0
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: winprovision-elevator-win-x64
